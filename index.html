@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 春節隨身旅遊手冊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F5F2; color: #4A4A4A; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card { background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); overflow: hidden; transition: transform 0.2s; }
+        .btn-nav { background-color: #8E9775; color: white; border-radius: 50px; padding: 6px 16px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px; }
+        .category-tag { font-size: 10px; font-weight: bold; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; display: inline-block; }
+        .tag-eat { background: #FFEDD5; color: #EA580C; }
+        .tag-view { background: #DCFCE7; color: #16A34A; }
+        .tag-stay { background: #DBEAFE; color: #2563EB; }
+        .tag-shop { background: #F3E8FF; color: #9333EA; }
+        input[type="number"] { border-bottom: 2px solid #E5E7EB; text-align: right; width: 100px; outline: none; }
+        input[type="number"]:focus { border-color: #8E9775; }
+    </style>
+</head>
+<body class="pb-24">
+
+    <header class="bg-white p-6 pt-12 text-center shadow-sm">
+        <h1 class="text-2xl font-light tracking-[0.3em] text-gray-800">2026 春節 · 旅</h1>
+        <p class="text-xs text-gray-400 mt-2 italic font-light">Minimalist Travel Diary</p>
+    </header>
+
+    <main id="app" class="p-4 max-w-md mx-auto">
+        
+        <div id="itinerary" class="tab-content active space-y-10">
+            <section class="day-section">
+                <div class="flex justify-between items-end mb-4 px-1">
+                    <div>
+                        <h2 class="text-xl font-bold">02/15 <span class="text-sm font-normal text-gray-500 ml-2">小年夜 (日)</span></h2>
+                        <p class="text-xs text-blue-500 mt-1"><i class="fas fa-cloud-sun"></i> 16°C - 21°C · 台中</p>
+                    </div>
+                    <span class="text-[10px] text-white bg-gray-400 px-2 py-1 rounded">Day 1</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">美食</span>
+                            <h3 class="font-bold">GOGOGA 極上雞湯新派中菜</h3>
+                            <p class="text-xs text-gray-400 mt-1">12:30 | 停留 1.5hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>必吃：</b>極上雞湯、新派脆皮雞</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=GOGOGA極上雞湯新派中菜" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
+                        <div>
+                            <span class="category-tag tag-shop">採買</span>
+                            <h3 class="font-bold">好市多 台中店</h3>
+                            <p class="text-xs text-gray-400 mt-1">14:15 | 停留 1.25hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>攻略：</b>採買除夕火鍋與圍爐食材</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=好市多台中店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-blue-400">
+                        <div>
+                            <span class="category-tag tag-stay">住宿</span>
+                            <h3 class="font-bold">莫家莊 (Check-in)</h3>
+                            <p class="text-xs text-gray-400 mt-1">16:15 | 電梯包棟私墅</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=莫家莊場地出租" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">晚餐</span>
+                            <h3 class="font-bold">條柴直火料理</h3>
+                            <p class="text-xs text-gray-400 mt-1">18:30 | 停留 1.5hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>特色：</b>龍眼木直火碳烤牛排</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=條柴直火料理" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="day-section">
+                <div class="flex justify-between items-end mb-4 px-1">
+                    <div>
+                        <h2 class="text-xl font-bold">02/16 <span class="text-sm font-normal text-gray-500 ml-2">除夕 (一)</span></h2>
+                        <p class="text-xs text-yellow-600 mt-1"><i class="fas fa-sun"></i> 15°C - 22°C · 后里</p>
+                    </div>
+                    <span class="text-[10px] text-white bg-gray-400 px-2 py-1 rounded">Day 2</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">景點</span>
+                            <h3 class="font-bold">后豐鐵馬道</h3>
+                            <p class="text-xs text-gray-400 mt-1">10:00 | 隧道口租車中心</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>故事：</b>必經花梁鋼橋，感受舊山線鐵道美景</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=后豐鐵馬道隧道口租車中心" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">午餐</span>
+                            <h3 class="font-bold">十二月粥品 (麗寶店)</h3>
+                            <p class="text-xs text-gray-400 mt-1">12:45 | 停留 1.5hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>必吃：</b>活鮮蝦粥、老滷拼盤</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=十二月粥品茶飲私房菜台中麗寶店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 border-l-4 border-red-400 bg-red-50">
+                        <span class="category-tag bg-red-200 text-red-600">重要</span>
+                        <h3 class="font-bold">民宿圍爐：火鍋+燒烤</h3>
+                        <p class="text-xs text-gray-500 mt-1">18:00 | 莫家莊包棟派對</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="day-section">
+                <div class="flex justify-between items-end mb-4 px-1">
+                    <div>
+                        <h2 class="text-xl font-bold">02/17 <span class="text-sm font-normal text-gray-500 ml-2">初一 (二)</span></h2>
+                        <p class="text-xs text-blue-500 mt-1"><i class="fas fa-cloud"></i> 17°C - 23°C · 彰化</p>
+                    </div>
+                    <span class="text-[10px] text-white bg-gray-400 px-2 py-1 rounded">Day 3</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">健行</span>
+                            <h3 class="font-bold">藤山步道</h3>
+                            <p class="text-xs text-gray-400 mt-1">10:15 | 全家走春行程</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=藤山步道" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">景點</span>
+                            <h3 class="font-bold">好田森林</h3>
+                            <p class="text-xs text-gray-400 mt-1">14:00 | 恐龍主題園區</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=好田森林" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
+                        <div>
+                            <span class="category-tag tag-shop">伴手禮</span>
+                            <h3 class="font-bold">貝林古堡·菲尼克斯教堂</h3>
+                            <p class="text-xs text-gray-400 mt-1">16:00 | 停留 30分</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>必買：</b>手工蛋塔 (256層酥皮)</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=貝林古堡菲尼克斯教堂" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">晚餐</span>
+                            <h3 class="font-bold">hechino 做茶菜 (大墩店)</h3>
+                            <p class="text-xs text-gray-400 mt-1">19:00 | 停留 1.5hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>必吃：</b>經典東坡肉、茶料理</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=hechino做茶菜大墩店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="day-section">
+                <div class="flex justify-between items-end mb-4 px-1">
+                    <div>
+                        <h2 class="text-xl font-bold">02/18 <span class="text-sm font-normal text-gray-500 ml-2">初二 (三)</span></h2>
+                        <p class="text-xs text-gray-500 mt-1"><i class="fas fa-smog"></i> 14°C - 20°C · 苗栗</p>
+                    </div>
+                    <span class="text-[10px] text-white bg-gray-400 px-2 py-1 rounded">Day 4</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">景點</span>
+                            <h3 class="font-bold">飛牛牧場</h3>
+                            <p class="text-xs text-gray-400 mt-1">10:00 | 停留 2hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>必吃：</b>牛奶白布丁、鮮奶霜淇淋</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=飛牛牧場" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">午餐</span>
+                            <h3 class="font-bold">紅棗食府</h3>
+                            <p class="text-xs text-gray-400 mt-1">13:00 | 停留 1.5hr</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>特色：</b>紅棗雞湯、紅棗香腸</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=紅棗食府" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
+                        <div>
+                            <span class="category-tag tag-shop">體驗</span>
+                            <h3 class="font-bold">三義鴨箱寶</h3>
+                            <p class="text-xs text-gray-400 mt-1">15:00 | 木雕彩繪 DIY</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=三義鴨箱寶" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-blue-400">
+                        <div>
+                            <span class="category-tag tag-stay">下榻</span>
+                            <h3 class="font-bold">卓也小屋渡假園區</h3>
+                            <p class="text-xs text-gray-400 mt-1">17:00 | 森林系民宿</p>
+                            <p class="text-xs mt-2 text-gray-600"><b>亮點：</b>藍染文化與生態景觀</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=卓也小屋渡假園區" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">晚餐</span>
+                            <h3 class="font-bold">新月梧桐 (三義店)</h3>
+                            <p class="text-xs text-gray-400 mt-1">18:30 | 停留 1.5hr</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=新月梧桐三義店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="day-section">
+                <div class="flex justify-between items-end mb-4 px-1">
+                    <div>
+                        <h2 class="text-xl font-bold">02/19 <span class="text-sm font-normal text-gray-500 ml-2">初三 (四)</span></h2>
+                        <p class="text-xs text-yellow-600 mt-1"><i class="fas fa-sun"></i> 16°C - 21°C · 苑裡</p>
+                    </div>
+                    <span class="text-[10px] text-white bg-gray-400 px-2 py-1 rounded">Day 5</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">手作</span>
+                            <h3 class="font-bold">小熊博物館</h3>
+                            <p class="text-xs text-gray-400 mt-1">10:30 | 苑裡手作體驗館</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=小熊博物館苑裡手作體驗館" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
+                        <div>
+                            <span class="category-tag tag-shop">伴手禮</span>
+                            <h3 class="font-bold">垂坤食品旗艦店</h3>
+                            <p class="text-xs text-gray-400 mt-1">11:33 | 停留 30分</p>
+                            <p class="text-xs mt-2 text-red-500"><b>必買：</b>海苔鬆餅、豬肉乾</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=垂坤食品旗艦店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
+                        <div>
+                            <span class="category-tag tag-view">採果</span>
+                            <h3 class="font-bold">佳樂觀光果園</h3>
+                            <p class="text-xs text-gray-400 mt-1">12:13 | 停留 1hr</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=佳樂觀光果園" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+
+                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
+                        <div>
+                            <span class="category-tag tag-eat">午餐</span>
+                            <h3 class="font-bold">紅芭樂創意料理</h3>
+                            <p class="text-xs text-gray-400 mt-1">13:30 | 停留 1.5hr</p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=紅芭樂創意料理" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="tools" class="tab-content space-y-8">
+            <section>
+                <h2 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-home text-gray-400"></i> 住宿資訊</h2>
+                <div class="card p-5 space-y-4">
+                    <div class="pb-4 border-b">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">02/15 - 02/17 (3 Nights)</p>
+                        <h3 class="font-bold">莫家莊</h3>
+                        <p class="text-xs text-gray-500 mt-1">電梯包棟私墅 / 適合長輩</p>
+                        <p class="text-xs mt-2 text-blue-600 font-mono"><b>預約編號：</b>NY20260215M</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">02/18 (1 Night)</p>
+                        <h3 class="font-bold">卓也小屋渡假園區</h3>
+                        <p class="text-xs text-gray-500 mt-1">苗栗三義 / 森林景觀房</p>
+                        <p class="text-xs mt-2 text-blue-600 font-mono"><b>預約編號：</b>ZY20260218S</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fas fa-wallet text-gray-400"></i> Firebase 雲端記帳</h2>
+                <div class="card p-5">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">公積金餘額</span>
+                            <span id="total-balance" class="font-bold text-green-600">$ 0</span>
+                        </div>
+                        <div class="space-y-4 pt-4 border-t">
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Day 1 支出</span>
+                                <input type="number" id="exp-d1" class="expense-item" placeholder="0" onchange="syncData()">
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Day 2 支出</span>
+                                <input type="number" id="exp-d2" class="expense-item" placeholder="0" onchange="syncData()">
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Day 3 支出</span>
+                                <input type="number" id="exp-d3" class="expense-item" placeholder="0" onchange="syncData()">
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Day 4 支出</span>
+                                <input type="number" id="exp-d4" class="expense-item" placeholder="0" onchange="syncData()">
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Day 5 支出</span>
+                                <input type="number" id="exp-d5" class="expense-item" placeholder="0" onchange="syncData()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full bg-white/80 backdrop-blur-md border-t border-gray-100 flex justify-around p-3 pb-6">
+        <button onclick="switchTab('itinerary')" id="btn-itinerary" class="flex flex-col items-center text-gray-800">
+            <i class="fas fa-map-marked-alt text-xl"></i>
+            <span class="text-[10px] mt-1">行程</span>
+        </button>
+        <button onclick="switchTab('tools')" id="btn-tools" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-suitcase text-xl"></i>
+            <span class="text-[10px] mt-1">住宿記帳</span>
+        </button>
+    </nav>
+
+    <script>
+        // --- 1. 分頁切換邏輯 ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // 按鈕顏色切換
+            document.getElementById('btn-itinerary').classList.replace('text-gray-800', 'text-gray-400');
+            document.getElementById('btn-tools').classList.replace('text-gray-800', 'text-gray-400');
+            document.getElementById('btn-' + tabId).classList.replace('text-gray-400', 'text-gray-800');
+        }
+
+        // --- 2. Firebase 初始化 (請替換為您的 Config) ---
+        const firebaseConfig = {
+            databaseURL: "https://console.firebase.google.com/u/0/project/springtravel-2026/database/springtravel-2026-default-rtdb/data/~2F" // 請在此填入您的 Firebase Realtime DB 網址
+        };
+        
+        // 僅在有 URL 時初始化
+        if (firebaseConfig.databaseURL.indexOf("YOUR") === -1) {
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
+
+            // 從 Firebase 讀取資料
+            db.ref('trip_2026/expenses').on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    let total = 0;
+                    for (let i = 1; i <= 5; i++) {
+                        const val = data['d' + i] || 0;
+                        document.getElementById('exp-d' + i).value = val;
+                        total += parseInt(val);
+                    }
+                    document.getElementById('total-balance').innerText = '$ ' + total.toLocaleString();
+                }
+            });
+        }
+
+        // 寫入資料到 Firebase
+        function syncData() {
+            if (firebaseConfig.databaseURL.indexOf("YOUR") !== -1) return;
+            const updates = {};
+            for (let i = 1; i <= 5; i++) {
+                updates['d' + i] = document.getElementById('exp-d' + i).value || 0;
+            }
+            firebase.database().ref('trip_2026/expenses').set(updates);
+        }
+    </script>
+</body>
+</html>
