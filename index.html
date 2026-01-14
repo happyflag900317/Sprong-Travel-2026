@@ -18,8 +18,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&display=swap');
         
-        /* 全域設定 */
-        html { scroll-behavior: smooth; } /* 平滑捲動 */
+        html { scroll-behavior: smooth; }
         body { 
             font-family: 'Noto Serif TC', serif; 
             background-color: #F2EFEA; 
@@ -28,7 +27,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
         
-        /* 莫蘭迪色系卡片 */
         .card { 
             background: white; 
             border-radius: 20px; 
@@ -37,13 +35,13 @@
             padding: 24px; 
         }
         
-        /* 快速導覽列樣式 */
+        /* 快速導覽列 */
         .day-nav {
             display: flex;
             gap: 8px;
             overflow-x: auto;
             padding: 10px 5px;
-            scrollbar-width: none; /* 隱藏滾動條 */
+            scrollbar-width: none;
         }
         .day-nav::-webkit-scrollbar { display: none; }
         .day-btn {
@@ -54,15 +52,22 @@
             border-radius: 50px;
             font-size: 0.95rem;
             font-weight: 700;
+            font-family: 'Noto Serif TC', serif;
         }
 
-        /* 文字放大與顏色 */
-        .section-date { font-size: 1.6rem; font-weight: 900; color: #7D8E95; margin: 40px 0 15px 5px; scroll-margin-top: 180px; }
+        /* 修正定位偏移：增加 scroll-margin-top 確保不被 Header 遮擋 */
+        .section-date { 
+            font-size: 1.6rem; 
+            font-weight: 900; 
+            color: #7D8E95; 
+            margin: 20px 0 15px 5px; 
+            scroll-margin-top: 210px; /* 增加此數值以解決遮擋問題 */
+        }
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: block; }
         .loc-title { font-size: 1.35rem; font-weight: 700; color: #5E6F64; line-height: 1.5; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; display: inline-block; }
         
-        /* 導航按鈕 */
+        /* 統一導航按鈕樣式 */
         .btn-nav { 
             background-color: #8E9775; 
             color: white; 
@@ -74,6 +79,7 @@
             display: inline-flex; 
             align-items: center; 
             justify-content: center;
+            border: none;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -82,7 +88,6 @@
 
     <header class="bg-white/90 backdrop-blur-md p-6 pt-12 text-center sticky top-0 z-40 shadow-sm">
         <h1 class="text-2xl font-black tracking-[0.2em] text-[#5E6F64] mb-4">二 〇 二 六 · 春 節 遊</h1>
-        
         <div class="day-nav">
             <a href="#day1" class="day-btn">D1 小年夜</a>
             <a href="#day2" class="day-btn">D2 除夕</a>
@@ -93,7 +98,6 @@
     </header>
 
     <main class="p-5 max-w-md mx-auto">
-        
         <div id="itinerary" class="tab-content active">
             <section id="day1">
                 <h2 class="section-date">02/15 小年夜</h2>
