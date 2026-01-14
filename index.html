@@ -55,19 +55,22 @@
             font-family: 'Noto Serif TC', serif;
         }
 
-        /* 修正定位偏移：增加 scroll-margin-top 確保不被 Header 遮擋 */
+        /* 核心修正：將補償值加大至 240px，並強制套用於 ID 錨點上 */
+        section[id] { 
+            scroll-margin-top: 240px !important; 
+        }
+
         .section-date { 
             font-size: 1.6rem; 
             font-weight: 900; 
             color: #7D8E95; 
             margin: 20px 0 15px 5px; 
-            scroll-margin-top: 210px; /* 增加此數值以解決遮擋問題 */
         }
+
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: block; }
         .loc-title { font-size: 1.35rem; font-weight: 700; color: #5E6F64; line-height: 1.5; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; display: inline-block; }
         
-        /* 統一導航按鈕樣式 */
         .btn-nav { 
             background-color: #8E9775; 
             color: white; 
@@ -206,7 +209,7 @@
                 </div></div>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">17:00</span><h3 class="loc-title">入住 卓也小屋</h3><span class="stay-tag">停留 01:00</span></div>
-                    <button onclick="goNav('卓也小屋渡假園區')" class="btn-nav">導航</button>
+                    <button onclick="goNav('卓也小屋渡假園園區')" class="btn-nav">導航</button>
                 </div></div>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">18:30</span><h3 class="loc-title">新月梧桐三義店</h3><span class="stay-tag">停留 01:30</span></div>
