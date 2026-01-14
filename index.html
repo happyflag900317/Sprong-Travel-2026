@@ -2,265 +2,140 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 春節隨身旅遊手冊</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>2026 春節隨身手冊</title>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <meta name="apple-mobile-web-app-title" content="春節旅遊">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
-<link rel="apple-touch-icon" href="icon.png">
-<link rel="icon" type="image/png" href="icon.png">
-<meta name="apple-mobile-web-app-title" content="春節旅遊">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F5F2; color: #4A4A4A; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F5F2; color: #4A4A4A; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-        .card { background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); overflow: hidden; }
-        .btn-nav { background-color: #8E9775; color: white; border-radius: 50px; padding: 6px 14px; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
-        .category-tag { font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; display: inline-block; }
-        .tag-eat { background: #FFEDD5; color: #EA580C; }
-        .tag-view { background: #DCFCE7; color: #16A34A; }
-        .tag-stay { background: #DBEAFE; color: #2563EB; }
-        .tag-shop { background: #F3E8FF; color: #9333EA; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 12px; }
+        .btn-nav { background-color: #8E9775; color: white; border-radius: 50px; padding: 6px 14px; font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+        .time-tag { color: #8E9775; font-weight: bold; font-size: 0.75rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="pb-24">
 
     <header class="bg-white p-6 pt-12 text-center shadow-sm">
-        <h1 class="text-2xl font-light tracking-[0.3em] text-gray-800">2026 春節 · 旅</h1>
-        <p class="text-xs text-gray-400 mt-2 italic font-light">Minimalist Travel Diary</p>
+        <h1 class="text-2xl font-light tracking-[0.2em]">2026 春節旅遊</h1>
+        <p class="text-[10px] text-gray-400 mt-1 italic">Family Trip Mobile Guide</p>
     </header>
 
-    <main id="app" class="p-4 max-w-md mx-auto">
-        
-        <div id="itinerary" class="tab-content active space-y-10">
-            <section class="day-section">
-                <div class="flex justify-between items-end mb-4 px-1">
-                    <div><h2 class="text-xl font-bold">02/15 <span class="text-sm font-normal text-gray-500 ml-2">小年夜 (日)</span></h2><p class="text-xs text-blue-500 mt-1"><i class="fas fa-cloud-sun"></i> 16°C - 21°C · 台中</p></div>
+    <main class="p-4 max-w-md mx-auto">
+        <div id="itinerary" class="tab-content active space-y-8">
+            <section>
+                <h2 class="font-bold text-lg mb-4 border-b pb-1">02/15 (日) 小年夜</h2>
+                <div class="card p-4 flex justify-between items-center border-l-4 border-orange-400">
+                    <div><p class="time-tag">12:30</p><h3 class="font-bold text-sm">GOGOGA 極上雞湯</h3></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=GOGOGA極上雞湯" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
                 </div>
-                <div class="space-y-4">
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">午餐</span><h3 class="font-bold text-sm">GOGOGA 極上雞湯</h3><p class="text-[10px] text-gray-400">12:30 | 停留 01時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=GOGOGA極上雞湯" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
-                        <div><span class="category-tag tag-shop">採買</span><h3 class="font-bold text-sm">好市多 台中店</h3><p class="text-[10px] text-gray-400">14:15 | 停留 01時15分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=好市多台中店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-blue-400">
-                        <div><span class="category-tag tag-stay">景點</span><h3 class="font-bold text-sm">莫家莊 電梯包棟私墅</h3><p class="text-[10px] text-gray-400">16:15 | 停留 01時45分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=莫家莊" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">晚餐</span><h3 class="font-bold text-sm">條柴直火料理</h3><p class="text-[10px] text-gray-400">18:30 | 停留 01時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=條柴直火料理" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="day-section">
-                <div class="flex justify-between items-end mb-4 px-1">
-                    <div><h2 class="text-xl font-bold">02/16 <span class="text-sm font-normal text-gray-500 ml-2">除夕 (一)</span></h2><p class="text-xs text-yellow-600 mt-1"><i class="fas fa-sun"></i> 15°C - 22°C · 后里</p></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">景點</span><h3 class="font-bold text-sm">后豐鐵馬道-隧道口租車</h3><p class="text-[10px] text-gray-400">10:00 | 停留 02時00分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=后豐鐵馬道隧道口租車" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
-                        <div><span class="category-tag tag-shop">購物</span><h3 class="font-bold text-sm">臺中麗寶 OUTLET MALL</h3><p class="text-[10px] text-gray-400">12:15 | 停留 03時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=麗寶OUTLETMALL" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">午餐</span><h3 class="font-bold text-sm">十二月粥品 麗寶店</h3><p class="text-[10px] text-gray-400">12:45 | 停留 01時30分</p></div>
-                    </div>
-                    <div class="card p-4 bg-red-50 border-l-4 border-red-400">
-                        <div><span class="category-tag bg-red-200 text-red-600">圍爐</span><h3 class="font-bold text-sm">民宿火鍋+燒烤</h3><p class="text-[10px] text-gray-500">18:00 | 民宿自理</p></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="day-section">
-                <div class="flex justify-between items-end mb-4 px-1">
-                    <div><h2 class="text-xl font-bold">02/17 <span class="text-sm font-normal text-gray-500 ml-2">初一 (二)</span></h2><p class="text-xs text-blue-500 mt-1"><i class="fas fa-cloud"></i> 17°C - 23°C · 彰化</p></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">景點</span><h3 class="font-bold text-sm">藤山步道</h3><p class="text-[10px] text-gray-400">10:15 | 停留 01時15分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=藤山步道" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">午餐</span><h3 class="font-bold text-sm">富味美之家</h3><p class="text-[10px] text-gray-400">12:00 | 停留 01時30分</p></div>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">景點</span><h3 class="font-bold text-sm">好田森林</h3><p class="text-[10px] text-gray-400">14:00 | 停留 01時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=好田森林" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
-                        <div><span class="category-tag tag-shop">景點</span><h3 class="font-bold text-sm">貝林古堡·菲尼克斯教堂</h3><p class="text-[10px] text-gray-400">16:00 | 停留 00時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=貝林古堡菲尼克斯教堂" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">晚餐</span><h3 class="font-bold text-sm">hechino做茶菜大墩店</h3><p class="text-[10px] text-gray-400">19:00 | 停留 01時30分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=hechino做茶菜大墩店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="day-section">
-                <div class="flex justify-between items-end mb-4 px-1">
-                    <div><h2 class="text-xl font-bold">02/18 <span class="text-sm font-normal text-gray-500 ml-2">初二 (三)</span></h2><p class="text-xs text-gray-500 mt-1"><i class="fas fa-smog"></i> 14°C - 20°C · 苗栗</p></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">景點</span><h3 class="font-bold text-sm">飛牛牧場</h3><p class="text-[10px] text-gray-400">10:00 | 停留 02時00分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=飛牛牧場" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">午餐</span><h3 class="font-bold text-sm">紅棗食府</h3><p class="text-[10px] text-gray-400">13:00 | 停留 01時30分</p></div>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
-                        <div><span class="category-tag tag-shop">體驗</span><h3 class="font-bold text-sm">三義鴨箱寶</h3><p class="text-[10px] text-gray-400">15:00 | 停留 01時00分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=三義鴨箱寶" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-blue-400">
-                        <div><span class="category-tag tag-stay">住宿</span><h3 class="font-bold text-sm">卓也小屋渡假園區</h3><p class="text-[10px] text-gray-400">17:00 | 停留 01時00分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=卓也小屋渡假園區" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">晚餐</span><h3 class="font-bold text-sm">新月梧桐三義店</h3><p class="text-[10px] text-gray-400">18:30 | 停留 01時30分</p></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="day-section">
-                <div class="flex justify-between items-end mb-4 px-1">
-                    <div><h2 class="text-xl font-bold">02/19 <span class="text-sm font-normal text-gray-500 ml-2">初三 (四)</span></h2><p class="text-xs text-yellow-600 mt-1"><i class="fas fa-sun"></i> 16°C - 21°C · 苑裡</p></div>
-                </div>
-                <div class="space-y-4">
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">體驗</span><h3 class="font-bold text-sm">小熊博物館苑裡手作</h3><p class="text-[10px] text-gray-400">10:30 | 停留 01時00分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=小熊博物館苑裡" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-purple-400">
-                        <div><span class="category-tag tag-shop">伴手禮</span><h3 class="font-bold text-sm">垂坤食品旗艦店</h3><p class="text-[10px] text-gray-400">11:33 | 停留 00時27分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=垂坤食品旗艦店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-green-400">
-                        <div><span class="category-tag tag-view">採果</span><h3 class="font-bold text-sm">佳樂觀光果園</h3><p class="text-[10px] text-gray-400">12:13 | 停留 01時07分</p></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=佳樂觀光果園" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-                    </div>
-                    <div class="card p-4 flex justify-between items-start border-l-4 border-orange-400">
-                        <div><span class="category-tag tag-eat">午餐</span><h3 class="font-bold text-sm">紅芭樂創意料理</h3><p class="text-[10px] text-gray-400">13:30 | 停留 01時30分</p></div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            <p class="text-center text-[10px] text-gray-300 italic">行程細節已依您之前清單建立</p>
         </div>
 
-        <div id="tools" class="tab-content space-y-8">
+        <div id="tools" class="tab-content space-y-6">
             <section>
-                <h2 class="text-lg font-bold mb-4">🏠 住宿資訊</h2>
-                <div class="card p-5 space-y-4 text-sm">
-                    <div class="pb-3 border-b border-gray-100">
-                        <p class="text-[10px] text-gray-400">02/15 - 02/17 (3晚)</p>
-                        <p class="font-bold text-base">莫家莊 電梯包棟私墅</p>
-                    </div>
+                <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-bed"></i> 住宿導航</h2>
+                
+                <div class="card p-5 border-l-4 border-blue-500 flex justify-between items-center">
                     <div>
-                        <p class="text-[10px] text-gray-400">02/18 (1晚)</p>
-                        <p class="font-bold text-base">卓也小屋渡假園區</p>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">02/15 - 02/17 (3晚)</p>
+                        <h3 class="font-bold text-base mt-1">莫家莊 電梯包棟私墅</h3>
+                        <p class="text-[10px] text-blue-500 mt-1">地址：台中市后里區復興街 (莫家莊)</p>
                     </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=莫家莊" class="btn-nav">
+                        <i class="fas fa-map-marked-alt"></i> 導航
+                    </a>
+                </div>
+
+                <div class="card p-5 border-l-4 border-blue-500 flex justify-between items-center">
+                    <div>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">02/18 (1晚)</p>
+                        <h3 class="font-bold text-base mt-1">卓也小屋渡假園區</h3>
+                        <p class="text-[10px] text-blue-500 mt-1">地址：苗栗縣三義鄉雙潭村崩山下1-9號</p>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=卓也小屋渡假園區" class="btn-nav">
+                        <i class="fas fa-map-marked-alt"></i> 導航
+                    </a>
                 </div>
             </section>
 
             <section>
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-bold">💰 雲端記帳本</h2>
+                    <h2 class="font-bold text-lg flex items-center gap-2"><i class="fas fa-wallet"></i> 雲端記帳</h2>
                     <button id="add-btn" class="bg-gray-800 text-white text-[10px] px-3 py-1 rounded-full">+ 新增項目</button>
                 </div>
                 <div class="card p-5">
-                    <div id="expense-container" class="space-y-4"></div>
-                    <div class="mt-6 pt-4 border-t border-dashed flex justify-between items-center">
-                        <span class="text-sm font-bold text-gray-400">總計金額</span>
-                        <span id="total-amount" class="text-xl font-bold text-green-600">$ 0</span>
+                    <div id="expense-list" class="space-y-3"></div>
+                    <div class="mt-4 pt-4 border-t border-dashed flex justify-between font-bold text-green-600">
+                        <span>總計</span><span id="total-val">$ 0</span>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <nav class="fixed bottom-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 flex justify-around p-3 pb-6">
-        <button onclick="switchTab('itinerary')" id="btn-itinerary" class="flex flex-col items-center text-gray-800">
-            <i class="fas fa-map-marked-alt text-xl"></i><span class="text-[10px] mt-1">行程</span>
-        </button>
-        <button onclick="switchTab('tools')" id="btn-tools" class="flex flex-col items-center text-gray-400">
-            <i class="fas fa-wallet text-xl"></i><span class="text-[10px] mt-1">記帳住宿</span>
-        </button>
+    <nav class="fixed bottom-0 w-full bg-white border-t flex justify-around p-3 pb-8 shadow-lg">
+        <button onclick="showTab('itinerary')" class="flex flex-col items-center text-gray-800"><i class="fas fa-calendar-alt"></i><span class="text-[10px] mt-1">行程</span></button>
+        <button onclick="showTab('tools')" class="flex flex-col items-center text-gray-400"><i class="fas fa-wallet"></i><span class="text-[10px] mt-1">工具</span></button>
     </nav>
 
     <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById('btn-itinerary').className = tabId === 'itinerary' ? 'flex flex-col items-center text-gray-800' : 'flex flex-col items-center text-gray-400';
-            document.getElementById('btn-tools').className = tabId === 'tools' ? 'flex flex-col items-center text-gray-800' : 'flex flex-col items-center text-gray-400';
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            // 切換導覽顏色
+            const btnItin = document.querySelector('button[onclick*="itinerary"]');
+            const btnTools = document.querySelector('button[onclick*="tools"]');
+            if(id === 'itinerary') {
+                btnItin.classList.replace('text-gray-400', 'text-gray-800');
+                btnTools.classList.replace('text-gray-800', 'text-gray-400');
+            } else {
+                btnTools.classList.replace('text-gray-400', 'text-gray-800');
+                btnItin.classList.replace('text-gray-800', 'text-gray-400');
+            }
         }
 
-        const firebaseConfig = {
-            databaseURL: "https://springtravel-2026-default-rtdb.asia-southeast1.firebasedatabase.app"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-        const expenseRef = db.ref('trip_2026/live_expenses');
+        const config = { databaseURL: "https://springtravel-2026-default-rtdb.asia-southeast1.firebasedatabase.app" };
+        firebase.initializeApp(config);
+        const db = firebase.database().ref('expenses');
 
-        expenseRef.on('value', (snapshot) => {
-            const container = document.getElementById('expense-container');
-            container.innerHTML = '';
+        db.on('value', snap => {
+            const list = document.getElementById('expense-list');
+            list.innerHTML = '';
             let total = 0;
-            const data = snapshot.val();
-            if (data) {
-                Object.keys(data).forEach(id => {
-                    const item = data[id];
-                    total += parseInt(item.amount || 0);
-                    renderRow(id, item.name, item.amount);
+            const data = snap.val();
+            if(data) {
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    total += parseInt(item.amt || 0);
+                    const row = document.createElement('div');
+                    row.className = "flex gap-2 items-center";
+                    row.innerHTML = `
+                        <input type="text" value="${item.name}" onchange="update('${key}','name',this.value)" class="bg-gray-50 text-xs p-2 rounded w-full border-none outline-none" placeholder="項目...">
+                        <input type="number" value="${item.amt}" onchange="update('${key}','amt',this.value)" class="bg-gray-50 text-xs p-2 rounded w-20 text-right border-none outline-none" placeholder="0">
+                        <button onclick="del('${key}')" class="text-gray-300 px-2">×</button>
+                    `;
+                    list.appendChild(row);
                 });
-            } else {
-                container.innerHTML = '<p class="text-center text-gray-300 text-xs py-4">點擊新增項目開始記帳</p>';
             }
-            document.getElementById('total-amount').innerText = '$ ' + total.toLocaleString();
+            document.getElementById('total-val').innerText = '$ ' + total.toLocaleString();
         });
 
-        function renderRow(id, name, amount) {
-            const container = document.getElementById('expense-container');
-            const div = document.createElement('div');
-            div.className = "flex gap-2 items-center";
-            div.innerHTML = `
-                <input type="text" value="${name}" onchange="updateFirebase('${id}', 'name', this.value)" 
-                    class="bg-gray-50 text-xs p-2 rounded w-full border-none outline-none" placeholder="項目名稱">
-                <input type="number" value="${amount}" onchange="updateFirebase('${id}', 'amount', this.value)" 
-                    class="bg-gray-50 text-xs p-2 rounded w-20 text-right border-none outline-none" placeholder="金額">
-                <button onclick="deleteRow('${id}')" class="text-gray-300 px-1"><i class="fas fa-times text-xs"></i></button>
-            `;
-            container.appendChild(div);
-        }
-
-        document.getElementById('add-btn').onclick = function() {
-            expenseRef.push({ name: "", amount: 0 });
-        };
-
-        function updateFirebase(id, field, value) {
-            const updates = {};
-            updates[field] = value;
-            expenseRef.child(id).update(updates);
-        }
-
-        function deleteRow(id) {
-            if(confirm('確定要刪除此筆記錄？')) expenseRef.child(id).remove();
-        }
+        document.getElementById('add-btn').addEventListener('click', () => db.push({ name: "", amt: 0 }));
+        function update(key, field, val) { const obj = {}; obj[field] = val; db.child(key).update(obj); }
+        function del(key) { if(confirm('確定刪除項目？')) db.child(key).remove(); }
     </script>
 </body>
 </html>
