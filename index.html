@@ -7,20 +7,17 @@
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="icon" type="image/png" href="icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F5F2; color: #4A4A4A; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F5F2; color: #4A4A4A; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
         .card { background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 12px; }
-        .btn-nav { background-color: #8E9775; color: white; border-radius: 50px; padding: 6px 14px; font-size: 0.75rem; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+        .btn-nav { background-color: #8E9775; color: white; border-radius: 50px; padding: 6px 14px; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; }
         .time-tag { color: #8E9775; font-weight: bold; font-size: 0.85rem; }
         .stay-tag { background: #f3f4f6; color: #6b7280; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-top: 4px; display: inline-block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -29,27 +26,27 @@
 <body class="pb-28">
 
     <header class="bg-white p-6 pt-12 text-center shadow-sm sticky top-0 z-40">
-        <h1 class="text-2xl font-light tracking-[0.2em]">2026 春節隨身手冊</h1>
+        <h1 class="text-2xl font-light tracking-[0.2em]">2026 春節旅程</h1>
     </header>
 
     <main class="p-4 max-w-md mx-auto">
         
         <div id="itinerary" class="tab-content active space-y-8">
-            <h2 class="font-bold text-lg mb-4 border-b pb-1">📅 預定行程總覽</h2>
-            
+            <h2 class="font-bold text-lg mb-4 border-b pb-1">📅 預定行程</h2>
+
             <section>
                 <h3 class="font-bold text-gray-400 text-sm mb-3">02/15 小年夜 (台中)</h3>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-orange-400">
                     <div><span class="time-tag">12:30</span><h3 class="font-bold text-sm">GOGOGA 極上雞湯</h3><span class="stay-tag">停留 01時30分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=GOGOGA+極上雞湯" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=GOGOGA極上雞湯" class="btn-nav">導航</a>
                 </div>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-purple-400">
                     <div><span class="time-tag">14:15</span><h3 class="font-bold text-sm">好市多 台中店</h3><span class="stay-tag">停留 01時15分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=好市多+台中店" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Costco台中店" class="btn-nav">導航</a>
                 </div>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-blue-400">
                     <div><span class="time-tag">16:15</span><h3 class="font-bold text-sm">莫家莊 電梯私墅</h3><span class="stay-tag">停留 01時45分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=莫家莊" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=莫家莊" class="btn-nav">導航</a>
                 </div>
             </section>
 
@@ -57,11 +54,11 @@
                 <h3 class="font-bold text-gray-400 text-sm mb-3">02/16 除夕 (后里)</h3>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-green-400">
                     <div><span class="time-tag">10:00</span><h3 class="font-bold text-sm">后豐鐵馬道</h3><span class="stay-tag">停留 02時00分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=后豐鐵馬道" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=后豐鐵馬道" class="btn-nav">導航</a>
                 </div>
-                <div class="card p-4 flex justify-between items-center border-l-4 border-purple-400">
-                    <div><span class="time-tag">12:15</span><h3 class="font-bold text-sm">麗寶 OUTLET MALL</h3><span class="stay-tag">停留 03時30分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=麗寶+OUTLET+MALL" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                <div class="card p-4 flex justify-between items-center border-l-4 border-orange-400">
+                    <div><span class="time-tag">12:45</span><h3 class="font-bold text-sm">十二月粥品 麗寶店</h3><span class="stay-tag">停留 01時30分</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=十二月粥品麗寶店" class="btn-nav">導航</a>
                 </div>
                 <div class="card p-4 border-l-4 border-red-400 bg-red-50">
                     <div><span class="time-tag">18:00</span><h3 class="font-bold text-sm text-red-600">圍爐-民宿火鍋燒烤</h3></div>
@@ -72,15 +69,37 @@
                 <h3 class="font-bold text-gray-400 text-sm mb-3">02/17 初一 (彰化)</h3>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-green-400">
                     <div><span class="time-tag">10:15</span><h3 class="font-bold text-sm">藤山步道</h3><span class="stay-tag">停留 01時15分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=藤山步道" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=藤山步道" class="btn-nav">導航</a>
                 </div>
                 <div class="card p-4 flex justify-between items-center border-l-4 border-green-400">
                     <div><span class="time-tag">14:00</span><h3 class="font-bold text-sm">好田森林</h3><span class="stay-tag">停留 01時30分</span></div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=好田森林" class="btn-nav"><i class="fas fa-location-arrow"></i> 導航</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=好田森林" class="btn-nav">導航</a>
                 </div>
             </section>
 
-            </div>
+            <section>
+                <h3 class="font-bold text-gray-400 text-sm mb-3">02/18 初二 (苗栗)</h3>
+                <div class="card p-4 flex justify-between items-center border-l-4 border-green-400">
+                    <div><span class="time-tag">10:00</span><h3 class="font-bold text-sm">飛牛牧場</h3><span class="stay-tag">停留 02時00分</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=飛牛牧場" class="btn-nav">導航</a>
+                </div>
+                <div class="card p-4 flex justify-between items-center border-l-4 border-blue-400">
+                    <div><span class="time-tag">17:00</span><h3 class="font-bold text-sm">卓也小屋</h3><span class="stay-tag">停留 01時00分</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=卓也小屋" class="btn-nav">導航</a>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="font-bold text-gray-400 text-sm mb-3">02/19 初三 (苑裡)</h3>
+                <div class="card p-4 border-l-4 border-purple-400">
+                    <div><span class="time-tag">11:33</span><h3 class="font-bold text-sm">垂坤食品旗艦店</h3><span class="stay-tag">停留 00時27分</span></div>
+                </div>
+                <div class="card p-4 flex justify-between items-center border-l-4 border-orange-400">
+                    <div><span class="time-tag">13:30</span><h3 class="font-bold text-sm">紅芭樂創意料理</h3><span class="stay-tag">停留 01時30分</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=紅芭樂創意料理" class="btn-nav">導航</a>
+                </div>
+            </section>
+        </div>
 
         <div id="quick-nav" class="tab-content space-y-6">
             <div class="flex justify-between items-center mb-4">
@@ -91,21 +110,20 @@
         </div>
 
         <div id="tools" class="tab-content space-y-6">
-            <h2 class="font-bold text-lg mb-4">💰 雲端記帳本</h2>
+            <h2 class="font-bold text-lg mb-4">💰 雲端記帳</h2>
             <div class="card p-5">
                 <div id="expense-list" class="space-y-3"></div>
-                <button id="add-exp-btn" class="w-full mt-4 py-2 border-2 border-dashed border-gray-200 rounded-lg text-gray-400 text-xs">+ 新增消費項目</button>
+                <button id="add-exp-btn" class="w-full mt-4 py-2 border-2 border-dashed border-gray-200 rounded-lg text-gray-400 text-xs">+ 新增項目</button>
                 <div class="mt-4 pt-4 border-t flex justify-between font-bold text-green-600">
-                    <span>目前總計</span><span id="total-val">$ 0</span>
+                    <span>總計金額</span><span id="total-val">$ 0</span>
                 </div>
             </div>
         </div>
-
     </main>
 
     <nav class="fixed bottom-0 w-full bg-white/90 backdrop-blur-md border-t flex justify-around p-3 pb-8 shadow-lg z-50">
         <button onclick="showTab('itinerary')" class="nav-btn flex flex-col items-center text-gray-800"><i class="fas fa-calendar-alt text-xl"></i><span class="text-[10px] mt-1">預定行程</span></button>
-        <button onclick="showTab('quick-nav')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-plus-circle text-xl"></i><span class="text-[10px] mt-1">臨時導航</span></button>
+        <button onclick="showTab('quick-nav')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-search-location text-xl"></i><span class="text-[10px] mt-1">臨時導航</span></button>
         <button onclick="showTab('tools')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-wallet text-xl"></i><span class="text-[10px] mt-1">記帳工具</span></button>
     </nav>
 
@@ -115,64 +133,55 @@
             document.getElementById(id).classList.add('active');
             const btns = document.querySelectorAll('.nav-btn');
             btns.forEach(btn => btn.classList.replace('text-gray-800', 'text-gray-400'));
-            // 根據 ID 切換顏色
             if(id === 'itinerary') btns[0].classList.replace('text-gray-400', 'text-gray-800');
             else if(id === 'quick-nav') btns[1].classList.replace('text-gray-400', 'text-gray-800');
             else btns[2].classList.replace('text-gray-400', 'text-gray-800');
+            window.scrollTo(0,0);
         }
 
-        // Firebase 初始化
         const config = { databaseURL: "https://springtravel-2026-default-rtdb.asia-southeast1.firebasedatabase.app" };
         firebase.initializeApp(config);
         const db = firebase.database();
 
-        // --- 1. 臨時導航數據處理 ---
+        // 臨時導航
         db.ref('locations').on('value', snap => {
             const list = document.getElementById('location-list');
             list.innerHTML = '';
             const data = snap.val();
             if(data) {
-                Object.keys(data).forEach(key => {
-                    const item = data[key];
-                    const div = document.createElement('div');
-                    div.className = "card p-4 flex justify-between items-center border-l-4 border-blue-400";
-                    div.innerHTML = `
-                        <input type="text" value="${item.name}" onchange="updateLoc('${key}', this.value)" class="text-sm font-bold w-full border-none outline-none" placeholder="輸入地點...">
-                        <div class="flex gap-3">
-                            <button onclick="goNav('${item.name}')" class="text-blue-500 text-xl"><i class="fas fa-directions"></i></button>
-                            <button onclick="delLoc('${key}')" class="text-gray-300">×</button>
-                        </div>
-                    `;
-                    list.appendChild(div);
+                Object.keys(data).forEach(k => {
+                    const i = data[k];
+                    const d = document.createElement('div');
+                    d.className = "card p-4 flex justify-between items-center border-l-4 border-blue-400";
+                    d.innerHTML = `<input type="text" value="${i.name}" onchange="updateLoc('${k}',this.value)" class="text-sm font-bold w-full outline-none"><div class="flex gap-3"><button onclick="goNav('${i.name}')" class="text-blue-500 text-xl"><i class="fas fa-directions"></i></button><button onclick="delLoc('${k}')" class="text-gray-300">×</button></div>`;
+                    list.appendChild(d);
                 });
             }
         });
         document.getElementById('add-loc-btn').onclick = () => db.ref('locations').push({ name: "" });
-        function updateLoc(k, v) { db.ref('locations').child(k).update({ name: v }); }
-        function delLoc(k) { if(confirm('刪除地點？')) db.ref('locations').child(k).remove(); }
-        function goNav(n) { if(!n) return alert('輸入名稱'); window.location.href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n)}`; }
+        function updateLoc(k,v) { db.ref('locations').child(k).update({name:v}); }
+        function delLoc(k) { db.ref('locations').child(k).remove(); }
+        function goNav(n) { if(!n) return; window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n)}`, '_blank'); }
 
-        // --- 2. 記帳數據處理 ---
+        // 記帳
         db.ref('expenses').on('value', snap => {
             const list = document.getElementById('expense-list');
-            list.innerHTML = '';
-            let total = 0;
+            list.innerHTML = ''; let total = 0;
             const data = snap.val();
             if(data) {
-                Object.keys(data).forEach(key => {
-                    const item = data[key];
-                    total += parseInt(item.amt || 0);
-                    const row = document.createElement('div');
-                    row.className = "flex gap-2 items-center mb-2";
-                    row.innerHTML = `<input type="text" value="${item.name}" onchange="updateExp('${key}','name',this.value)" class="bg-gray-50 text-xs p-2 rounded w-full border-none outline-none"><input type="number" value="${item.amt}" onchange="updateExp('${key}','amt',this.value)" class="bg-gray-50 text-xs p-2 rounded w-20 text-right border-none outline-none"><button onclick="delExp('${key}')" class="text-gray-300 px-2">×</button>`;
-                    list.appendChild(row);
+                Object.keys(data).forEach(k => {
+                    const i = data[k]; total += parseInt(i.amt || 0);
+                    const r = document.createElement('div');
+                    r.className = "flex gap-2 items-center mb-2";
+                    r.innerHTML = `<input type="text" value="${i.name}" onchange="updateExp('${k}','name',this.value)" class="bg-gray-50 text-xs p-2 rounded w-full outline-none"><input type="number" value="${i.amt}" onchange="updateExp('${k}','amt',this.value)" class="bg-gray-50 text-xs p-2 rounded w-20 text-right outline-none"><button onclick="delExp('${k}')" class="text-gray-300 px-2">×</button>`;
+                    list.appendChild(r);
                 });
             }
             document.getElementById('total-val').innerText = '$ ' + total.toLocaleString();
         });
         document.getElementById('add-exp-btn').onclick = () => db.ref('expenses').push({ name: "", amt: 0 });
-        function updateExp(k, f, v) { const o={}; o[f]=v; db.ref('expenses').child(k).update(o); }
-        function delExp(k) { if(confirm('刪除？')) db.ref('expenses').child(k).remove(); }
+        function updateExp(k,f,v) { const o={}; o[f]=v; db.ref('expenses').child(k).update(o); }
+        function delExp(k) { db.ref('expenses').child(k).remove(); }
     </script>
 </body>
 </html>
