@@ -35,7 +35,6 @@
             padding: 24px; 
         }
         
-        /* 快速導覽列 */
         .day-nav {
             display: flex;
             gap: 8px;
@@ -55,9 +54,9 @@
             font-family: 'Noto Serif TC', serif;
         }
 
-        /* 核心修正：將補償值加大至 240px，並強制套用於 ID 錨點上 */
-        section[id] { 
-            scroll-margin-top: 240px !important; 
+        /* 關鍵修正：僅針對行程頁面的 section 進行補償，不影響其他分頁 */
+        #itinerary section[id] { 
+            scroll-margin-top: 220px !important; 
         }
 
         .section-date { 
@@ -209,7 +208,7 @@
                 </div></div>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">17:00</span><h3 class="loc-title">入住 卓也小屋</h3><span class="stay-tag">停留 01:00</span></div>
-                    <button onclick="goNav('卓也小屋渡假園園區')" class="btn-nav">導航</button>
+                    <button onclick="goNav('卓也小屋渡假園區')" class="btn-nav">導航</button>
                 </div></div>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">18:30</span><h3 class="loc-title">新月梧桐三義店</h3><span class="stay-tag">停留 01:30</span></div>
@@ -291,6 +290,25 @@
         firebase.initializeApp(config);
         const db = firebase.database();
 
+        // 臨時導航邏輯
+        db.ref('quick_nav').on('value', snap => {
+            const list = document.getElementById('location-list'); list.innerHTML = '';
+            const data = snap.val();
+            if(data) {
+                Object.keys(data).forEach(k => {
+                    const i = data[k];
+                    const r = document.createElement('div');
+                    r.className = "card flex gap-2 items-center";
+                    r.innerHTML = `<input type="text" value="${i.name}" onchange="updateLoc('${k}',this.value)" placeholder="輸入地點名稱" class="bg-gray-50 text-lg p-3 rounded-lg w-full outline-none font-bold"><button onclick="goNav('${i.name}')" class="btn-nav"><i class="fas fa-location-arrow"></i></button><button onclick="delLoc('${k}')" class="text-gray-300 px-2 text-xl">×</button>`;
+                    list.appendChild(r);
+                });
+            }
+        });
+        document.getElementById('add-loc-btn').onclick = () => db.ref('quick_nav').push({ name: "" });
+        function updateLoc(k,v) { db.ref('quick_nav').child(k).update({name: v}); }
+        function delLoc(k) { if(confirm('刪除導航點？')) db.ref('quick_nav').child(k).remove(); }
+
+        // 帳本邏輯
         db.ref('expenses').on('value', snap => {
             const list = document.getElementById('expense-list'); list.innerHTML = ''; let total = 0;
             const data = snap.val();
