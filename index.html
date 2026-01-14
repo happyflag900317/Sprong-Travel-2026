@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>2026 春節隨身手冊</title>
+    <title>2026 春節遊手冊</title>
+    
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="春節遊">
+    <link rel="icon" type="image/png" href="icon.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -14,7 +21,7 @@
         body { 
             font-family: 'Noto Serif TC', serif; 
             background-color: #F2EFEA; 
-            color: #4A4A4A; /* 避開純黑 */
+            color: #4A4A4A;
         }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
@@ -26,7 +33,6 @@
             box-shadow: 0 8px 20px rgba(142, 151, 117, 0.1); 
             margin-bottom: 20px; 
             padding: 24px; 
-            border: none;
         }
         
         /* 文字放大與顏色 */
@@ -35,16 +41,19 @@
         .loc-title { font-size: 1.35rem; font-weight: 700; color: #5E6F64; line-height: 1.5; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; display: inline-block; }
         
+        /* 統一導航按鈕樣式 */
         .btn-nav { 
             background-color: #8E9775; 
             color: white; 
             border-radius: 12px; 
             padding: 10px 18px; 
             font-size: 1.1rem; 
-            display: flex; 
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+            display: inline-flex; 
             align-items: center; 
-            gap: 8px; 
-            transition: opacity 0.2s;
+            justify-content: center;
+            border: none;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -52,7 +61,7 @@
 <body class="pb-32">
 
     <header class="bg-white/80 backdrop-blur-md p-8 pt-14 text-center sticky top-0 z-40">
-        <h1 class="text-3xl font-black tracking-widest color-[#5E6F64]">二 〇 二 六 · 春 節</h1>
+        <h1 class="text-2xl md:text-3xl font-black tracking-[0.2em] text-[#5E6F64]">二 〇 二 六 · 春 節 遊</h1>
     </header>
 
     <main class="p-5 max-w-md mx-auto">
@@ -62,7 +71,7 @@
                 <h2 class="section-date">02/15 小年夜</h2>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">12:30</span><h3 class="loc-title">GOGOGA 極上雞湯</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('GOGOGA極上雞湯')" class="btn-nav"><i class="fas fa-location-arrow"></i>導航</button>
+                    <button onclick="goNav('GOGOGA極上雞湯')" class="btn-nav">導航</button>
                 </div></div>
                 <div class="card"><div class="flex justify-between items-start">
                     <div><span class="time-tag">14:15</span><h3 class="loc-title">好市多 台中店</h3><span class="stay-tag">停留 01:15</span></div>
@@ -220,18 +229,22 @@
     </main>
 
     <nav class="fixed bottom-0 w-full bg-white/95 backdrop-blur-md border-t flex justify-around p-4 pb-10 shadow-lg z-50">
-        <button onclick="showTab('itinerary')" class="nav-btn flex flex-col items-center text-[#8E9775]"><i class="fas fa-calendar-alt text-2xl"></i><span class="text-xs mt-1">預定行程</span></button>
-        <button onclick="showTab('quick-nav')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-map-marked-alt text-2xl"></i><span class="text-xs mt-1">臨時導航</span></button>
-        <button onclick="showTab('tools')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-wallet text-2xl"></i><span class="text-xs mt-1">公款記帳</span></button>
+        <button onclick="showTab('itinerary')" class="nav-btn-tab flex flex-col items-center text-[#8E9775]"><i class="fas fa-calendar-alt text-2xl"></i><span class="text-xs mt-1">預定行程</span></button>
+        <button onclick="showTab('quick-nav')" class="nav-btn-tab flex flex-col items-center text-gray-400"><i class="fas fa-map-marked-alt text-2xl"></i><span class="text-xs mt-1">臨時導航</span></button>
+        <button onclick="showTab('tools')" class="nav-btn-tab flex flex-col items-center text-gray-400"><i class="fas fa-wallet text-2xl"></i><span class="text-xs mt-1">公款記帳</span></button>
     </nav>
 
     <script>
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            const btns = document.querySelectorAll('nav button');
-            btns.forEach(btn => btn.classList.replace('text-[#8E9775]', 'text-gray-400'));
-            event.currentTarget.classList.replace('text-gray-400', 'text-[#8E9775]');
+            const btns = document.querySelectorAll('.nav-btn-tab');
+            btns.forEach(btn => {
+                btn.classList.remove('text-[#8E9775]');
+                btn.classList.add('text-gray-400');
+            });
+            event.currentTarget.classList.remove('text-gray-400');
+            event.currentTarget.classList.add('text-[#8E9775]');
             window.scrollTo(0,0);
         }
 
@@ -243,7 +256,6 @@
         firebase.initializeApp(config);
         const db = firebase.database();
 
-        // 記帳與臨時導航邏輯保持...
         db.ref('expenses').on('value', snap => {
             const list = document.getElementById('expense-list'); list.innerHTML = ''; let total = 0;
             const data = snap.val();
