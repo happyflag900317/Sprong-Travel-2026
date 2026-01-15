@@ -14,20 +14,22 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
         .card { background: white; border-radius: 18px; box-shadow: 0 4px 15px rgba(142, 151, 117, 0.1); margin-bottom: 16px; padding: 20px; }
-        .day-nav { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; justify-content: center; }
+        .day-nav { display: flex; gap: 8px; overflow-x: auto; padding: 6px 0; scrollbar-width: none; justify-content: center; }
         .day-btn { flex: 0 0 auto; background-color: #A7AD9B; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
         .section-date { font-size: 1.4rem; font-weight: 900; color: #7D8E95; margin: 25px 0 15px; border-left: 4px solid #8E9775; padding-left: 12px; }
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.1rem; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; margin-top: 4px; display: inline-block; }
         .btn-nav { background-color: #8E9775; color: white; border-radius: 10px; padding: 6px 14px; font-weight: 700; font-size: 0.85rem; }
-        .sticky-input-panel { position: sticky; top: 110px; z-index: 30; background: #F2EFEA; padding: 10px 0; }
+        /* 修正 2: 縮小頂部方框高度，防止遮擋 */
+        header { padding-top: 10px; padding-bottom: 8px; }
+        .sticky-input-panel { position: sticky; top: 105px; z-index: 30; background: #F2EFEA; padding: 5px 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="pb-32">
 
-    <header class="bg-white/90 backdrop-blur-md p-4 pt-10 text-center sticky top-0 z-40 shadow-sm">
-        <h1 class="text-xl font-black tracking-[0.2em] text-[#5E6F64] mb-2">二 〇 二 六 · 春 節 遊</h1>
+    <header class="bg-white/90 backdrop-blur-md px-4 text-center sticky top-0 z-40 shadow-sm">
+        <h1 class="text-xl font-black tracking-[0.2em] text-[#5E6F64] pt-4 mb-1">二 〇 二 六 · 春 節 遊</h1>
         <div class="day-nav">
             <div onclick="jumpToDay('day1')" class="day-btn">D1 小年夜</div>
             <div onclick="jumpToDay('day2')" class="day-btn">D2 除夕</div>
@@ -47,7 +49,6 @@
                 <div class="card flex justify-between items-center"><div><span class="time-tag">18:30</span><h3 class="font-bold">晚餐-條柴直火料理</h3><span class="stay-tag">停留 01:30</span></div><button onclick="goNav('條柴直火料理')" class="btn-nav">導航</button></div>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">20:30</span><h3 class="font-bold">民宿入住-莫家莊</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
             </section>
-
             <section id="day2">
                 <h2 class="section-date">02/16 除夕</h2>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">09:30</span><h3 class="font-bold">從莫家莊出發</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
@@ -57,7 +58,6 @@
                 <div class="card flex justify-between items-center"><div><span class="time-tag">16:00</span><h3 class="font-bold">回到民宿-莫家莊</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">18:00</span><h3 class="font-bold">晚餐-民宿火鍋燒烤</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
             </section>
-
             <section id="day3">
                 <h2 class="section-date">02/17 初一</h2>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">09:00</span><h3 class="font-bold">出發 (莫家莊)</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
@@ -67,8 +67,7 @@
                 <div class="card flex justify-between items-center"><div><span class="time-tag">16:00</span><h3 class="font-bold">菲尼克斯教堂</h3><span class="stay-tag">停留 00:30</span></div><button onclick="goNav('菲尼克斯教堂')" class="btn-nav">導航</button></div>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">17:30</span><h3 class="font-bold">回到民宿 (休整)</h3><span class="stay-tag">停留 00:50</span></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">19:00</span><h3 class="font-bold">晚餐-做茶菜大墩店</h3><span class="stay-tag">停留 01:30</span></div><button onclick="goNav('做茶菜大墩店')" class="btn-nav">導航</button></div>
-                </section>
-
+            </section>
             <section id="day4">
                 <h2 class="section-date">02/18 初二</h2>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">09:15</span><h3 class="font-bold">莫家莊退房出發</h3></div><button onclick="goNav('莫家莊')" class="btn-nav">導航</button></div>
@@ -80,7 +79,6 @@
                 <div class="card flex justify-between items-center"><div><span class="time-tag">18:30</span><h3 class="font-bold">晚餐-新月梧桐三義店</h3><span class="stay-tag">停留 01:30</span></div><button onclick="goNav('新月梧桐三義店')" class="btn-nav">導航</button></div>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">20:20</span><h3 class="font-bold">回民宿休息</h3></div><button onclick="goNav('卓也小屋')" class="btn-nav">導航</button></div>
             </section>
-
             <section id="day5">
                 <h2 class="section-date">02/19 初三</h2>
                 <div class="card flex justify-between items-center"><div><span class="time-tag">08:00</span><h3 class="font-bold">卓也小屋早晨</h3><span class="stay-tag">停留 02:00</span></div><button onclick="goNav('卓也小屋')" class="btn-nav">導航</button></div>
@@ -92,9 +90,9 @@
         </div>
 
         <div id="tools" class="tab-content">
-            <div class="flex justify-between items-center mb-4 px-2">
+            <div class="flex justify-between items-end mb-4 px-2">
                 <h2 class="font-bold text-2xl text-[#5E6F64]">💰 公款帳本</h2>
-                <div class="text-right"><span class="text-xs text-gray-400">總計</span><span id="total-val" class="font-black text-2xl text-[#8E9775] block">$ 0</span></div>
+                <div class="text-right"><span class="text-[10px] text-gray-400">總計金額</span><span id="total-val" class="font-black text-2xl text-[#8E9775] block">$ 0</span></div>
             </div>
 
             <div class="sticky-input-panel">
@@ -106,11 +104,10 @@
                                 <option value="02/17">02/17</option><option value="02/18">02/18</option>
                                 <option value="02/19">02/19</option>
                             </select>
-                            <input type="text" id="new-exp-name" placeholder="項目名稱" class="bg-white p-3 rounded-xl flex-1 outline-none text-sm shadow-sm border border-gray-100">
-                        </div>
-                        <div class="flex gap-2">
                             <input type="number" id="new-exp-amt" placeholder="輸入金額 $" class="bg-white p-3 rounded-xl flex-1 outline-none text-sm font-bold shadow-sm border border-gray-100">
                         </div>
+                        <input type="text" id="new-exp-name" placeholder="項目名稱 (例如: 午餐、停車費)" class="bg-white p-3 rounded-xl w-full outline-none text-sm shadow-sm border border-gray-100">
+                        
                         <input type="text" id="new-exp-note" placeholder="添加備註 (選填)" class="w-full bg-white/60 p-3 rounded-xl text-xs outline-none border border-gray-100">
                         <button onclick="addNewExpense()" class="w-full py-4 bg-[#8E9775] text-white rounded-xl font-bold text-sm shadow-md active:scale-95 transition-all">+ 新增支出項目</button>
                     </div>
@@ -142,7 +139,7 @@
             showTab('itinerary');
             setTimeout(() => {
                 const el = document.getElementById(dayId);
-                if(el) { window.scrollTo({ top: el.offsetTop - 160, behavior: 'smooth' }); }
+                if(el) { window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' }); }
             }, 100);
         }
 
