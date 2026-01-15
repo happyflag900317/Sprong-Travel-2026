@@ -14,22 +14,22 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
         .card { background: white; border-radius: 18px; box-shadow: 0 4px 15px rgba(142, 151, 117, 0.1); margin-bottom: 16px; padding: 20px; }
-        .day-nav { display: flex; gap: 8px; overflow-x: auto; padding: 6px 0; scrollbar-width: none; justify-content: center; }
+        .day-nav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; scrollbar-width: none; justify-content: center; }
         .day-btn { flex: 0 0 auto; background-color: #A7AD9B; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
         .section-date { font-size: 1.4rem; font-weight: 900; color: #7D8E95; margin: 25px 0 15px; border-left: 4px solid #8E9775; padding-left: 12px; }
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.1rem; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; margin-top: 4px; display: inline-block; }
         .btn-nav { background-color: #8E9775; color: white; border-radius: 10px; padding: 6px 14px; font-weight: 700; font-size: 0.85rem; }
-        /* 修正 2: 縮小頂部方框高度，防止遮擋 */
-        header { padding-top: 10px; padding-bottom: 8px; }
-        .sticky-input-panel { position: sticky; top: 105px; z-index: 30; background: #F2EFEA; padding: 5px 0; }
+        /* 修正 2: 再次壓縮頭部，確保不遮擋總計字樣 */
+        header { padding-top: 5px; padding-bottom: 5px; }
+        .sticky-input-panel { position: sticky; top: 95px; z-index: 30; background: #F2EFEA; padding: 5px 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="pb-32">
 
     <header class="bg-white/90 backdrop-blur-md px-4 text-center sticky top-0 z-40 shadow-sm">
-        <h1 class="text-xl font-black tracking-[0.2em] text-[#5E6F64] pt-4 mb-1">二 〇 二 六 · 春 節 遊</h1>
+        <h1 class="text-xl font-black tracking-[0.2em] text-[#5E6F64] pt-2 mb-1">二 〇 二 六 · 春 節 遊</h1>
         <div class="day-nav">
             <div onclick="jumpToDay('day1')" class="day-btn">D1 小年夜</div>
             <div onclick="jumpToDay('day2')" class="day-btn">D2 除夕</div>
@@ -98,17 +98,21 @@
             <div class="sticky-input-panel">
                 <div class="card !bg-[#EAE7E0] border-2 border-[#8E9775] !mb-0 p-4">
                     <div class="flex flex-col gap-3">
-                        <div class="flex gap-2">
-                            <select id="new-exp-date" class="bg-white p-3 rounded-xl text-sm font-bold w-1/3 shadow-sm border border-gray-100">
+                        <div class="flex gap-2 w-full">
+                            <select id="new-exp-date" class="bg-white p-3 rounded-xl text-sm font-bold w-1/2 shadow-sm border border-gray-100">
                                 <option value="02/15">02/15</option><option value="02/16">02/16</option>
                                 <option value="02/17">02/17</option><option value="02/18">02/18</option>
                                 <option value="02/19">02/19</option>
                             </select>
-                            <input type="number" id="new-exp-amt" placeholder="輸入金額 $" class="bg-white p-3 rounded-xl flex-1 outline-none text-sm font-bold shadow-sm border border-gray-100">
+                            <input type="number" id="new-exp-amt" placeholder="輸入金額 $" class="bg-white p-3 rounded-xl w-1/2 outline-none text-sm font-bold shadow-sm border border-gray-100">
                         </div>
-                        <input type="text" id="new-exp-name" placeholder="項目名稱 (例如: 午餐、停車費)" class="bg-white p-3 rounded-xl w-full outline-none text-sm shadow-sm border border-gray-100">
                         
-                        <input type="text" id="new-exp-note" placeholder="添加備註 (選填)" class="w-full bg-white/60 p-3 rounded-xl text-xs outline-none border border-gray-100">
+                        <div class="w-full">
+                            <input type="text" id="new-exp-name" placeholder="項目名稱 (例如: 午餐、停車費)" class="bg-white p-3 rounded-xl w-full outline-none text-sm shadow-sm border border-gray-100 box-border">
+                        </div>
+                        
+                        <input type="text" id="new-exp-note" placeholder="添加備註 (選填)" class="w-full bg-white/60 p-3 rounded-xl text-xs outline-none border border-gray-100 box-border">
+                        
                         <button onclick="addNewExpense()" class="w-full py-4 bg-[#8E9775] text-white rounded-xl font-bold text-sm shadow-md active:scale-95 transition-all">+ 新增支出項目</button>
                     </div>
                 </div>
