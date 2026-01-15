@@ -20,7 +20,9 @@
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.1rem; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; margin-top: 4px; display: inline-block; }
         .btn-nav { background-color: #8E9775; color: white; border-radius: 10px; padding: 6px 14px; font-weight: 700; font-size: 0.85rem; }
-        /* 修正 2: 再次壓縮頭部，確保不遮擋總計字樣 */
+        
+        /* 核心修正：解決手機全螢幕溢出 */
+        input, select, button { box-sizing: border-box !important; }
         header { padding-top: 5px; padding-bottom: 5px; }
         .sticky-input-panel { position: sticky; top: 95px; z-index: 30; background: #F2EFEA; padding: 5px 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -98,20 +100,20 @@
             <div class="sticky-input-panel">
                 <div class="card !bg-[#EAE7E0] border-2 border-[#8E9775] !mb-0 p-4">
                     <div class="flex flex-col gap-3">
-                        <div class="flex gap-2 w-full">
-                            <select id="new-exp-date" class="bg-white p-3 rounded-xl text-sm font-bold w-1/2 shadow-sm border border-gray-100">
+                        <div class="flex gap-2 w-full flex-nowrap overflow-hidden">
+                            <select id="new-exp-date" class="bg-white p-3 rounded-xl text-sm font-bold w-1/2 shadow-sm border border-gray-100 outline-none">
                                 <option value="02/15">02/15</option><option value="02/16">02/16</option>
                                 <option value="02/17">02/17</option><option value="02/18">02/18</option>
                                 <option value="02/19">02/19</option>
                             </select>
-                            <input type="number" id="new-exp-amt" placeholder="輸入金額 $" class="bg-white p-3 rounded-xl w-1/2 outline-none text-sm font-bold shadow-sm border border-gray-100">
+                            <input type="number" id="new-exp-amt" placeholder="金額 $" class="bg-white p-3 rounded-xl w-1/2 outline-none text-sm font-bold shadow-sm border border-gray-100">
                         </div>
                         
                         <div class="w-full">
-                            <input type="text" id="new-exp-name" placeholder="項目名稱 (例如: 午餐、停車費)" class="bg-white p-3 rounded-xl w-full outline-none text-sm shadow-sm border border-gray-100 box-border">
+                            <input type="text" id="new-exp-name" placeholder="項目名稱 (例如: 午餐)" class="bg-white p-3 rounded-xl w-full outline-none text-sm shadow-sm border border-gray-100">
                         </div>
                         
-                        <input type="text" id="new-exp-note" placeholder="添加備註 (選填)" class="w-full bg-white/60 p-3 rounded-xl text-xs outline-none border border-gray-100 box-border">
+                        <input type="text" id="new-exp-note" placeholder="添加備註 (選填)" class="w-full bg-white/60 p-3 rounded-xl text-xs outline-none border border-gray-100">
                         
                         <button onclick="addNewExpense()" class="w-full py-4 bg-[#8E9775] text-white rounded-xl font-bold text-sm shadow-md active:scale-95 transition-all">+ 新增支出項目</button>
                     </div>
