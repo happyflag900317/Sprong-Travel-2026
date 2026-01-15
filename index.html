@@ -37,52 +37,25 @@
         
         .day-nav {
             display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 10px 5px;
-            scrollbar-width: none;
+            gap: 8px; overflow-x: auto; padding: 10px 5px; scrollbar-width: none;
         }
         .day-nav::-webkit-scrollbar { display: none; }
         .day-btn {
-            flex: 0 0 auto;
-            background-color: #A7AD9B;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            font-family: 'Noto Serif TC', serif;
+            flex: 0 0 auto; background-color: #A7AD9B; color: white; padding: 8px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
         }
 
-        /* 關鍵修正：僅針對行程頁面的 section 進行補償，不影響其他分頁 */
-        #itinerary section[id] { 
-            scroll-margin-top: 220px !important; 
-        }
-
-        .section-date { 
-            font-size: 1.6rem; 
-            font-weight: 900; 
-            color: #7D8E95; 
-            margin: 20px 0 15px 5px; 
-        }
-
+        #itinerary section { scroll-margin-top: 220px !important; }
+        .section-date { font-size: 1.6rem; font-weight: 900; color: #7D8E95; margin: 20px 0 15px 5px; }
         .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: block; }
         .loc-title { font-size: 1.35rem; font-weight: 700; color: #5E6F64; line-height: 1.5; }
         .stay-tag { background: #E9EDC9; color: #6B705C; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; display: inline-block; }
         
         .btn-nav { 
-            background-color: #8E9775; 
-            color: white; 
-            border-radius: 12px; 
-            padding: 10px 18px; 
-            font-size: 1.1rem; 
-            font-family: 'Noto Serif TC', serif;
-            font-weight: 700;
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center;
-            border: none;
+            background-color: #8E9775; color: white; border-radius: 12px; padding: 10px 18px; font-size: 1.1rem; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center; border: none;
         }
+        /* 記帳專用樣式 */
+        .exp-date-label { background: #7D8E95; color: white; padding: 2px 10px; border-radius: 6px; font-size: 0.9rem; margin-bottom: 10px; display: inline-block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -107,142 +80,8 @@
                     <div><span class="time-tag">12:30</span><h3 class="loc-title">GOGOGA 極上雞湯</h3><span class="stay-tag">停留 01:30</span></div>
                     <button onclick="goNav('GOGOGA極上雞湯')" class="btn-nav">導航</button>
                 </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">14:15</span><h3 class="loc-title">好市多 台中店</h3><span class="stay-tag">停留 01:15</span></div>
-                    <button onclick="goNav('好市多台中店')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">16:15</span><h3 class="loc-title">莫家莊 電梯私墅</h3><span class="stay-tag">停留 01:45</span></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">18:30</span><h3 class="loc-title">燚條柴直火料理</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('燚條柴直火料理')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">20:30</span><h3 class="loc-title">抵達休息 (莫家莊)</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-            </section>
-
-            <section id="day2">
-                <h2 class="section-date">02/16 除夕</h2>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">09:30</span><h3 class="loc-title">從莫家莊出發</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">10:00</span><h3 class="loc-title">后豐鐵馬道</h3><span class="stay-tag">停留 02:00</span></div>
-                    <button onclick="goNav('后豐鐵馬道隧道口租車中心')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">12:15</span><h3 class="loc-title">麗寶 OUTLET</h3><span class="stay-tag">停留 03:30</span></div>
-                    <button onclick="goNav('麗寶OUTLET MALL')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">12:45</span><h3 class="loc-title">十二月粥品 麗寶店</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('十二月粥品麗寶店')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">16:00</span><h3 class="loc-title">回莫家莊休息</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card" style="background: #FEFAE0;"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">18:00</span><h3 class="loc-title" style="color: #BC6C25;">除夕圍爐火鍋燒烤</h3></div>
-                </div></div>
-            </section>
-
-            <section id="day3">
-                <h2 class="section-date">02/17 初一</h2>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">09:00</span><h3 class="loc-title">出發 (莫家莊)</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">10:15</span><h3 class="loc-title">藤山步道</h3><span class="stay-tag">停留 01:15</span></div>
-                    <button onclick="goNav('藤山步道')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">12:00</span><h3 class="loc-title">富味美之家</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('富味美之家')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">14:00</span><h3 class="loc-title">好田森林</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('好田森林')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">16:00</span><h3 class="loc-title">貝林古堡教堂</h3><span class="stay-tag">停留 00:30</span></div>
-                    <button onclick="goNav('貝林古堡菲尼克斯教堂')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">17:30</span><h3 class="loc-title">回房休息 (莫家莊)</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">19:00</span><h3 class="loc-title">做茶菜 大墩店</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('做茶菜大墩店')" class="btn-nav">導航</button>
-                </div></div>
-            </section>
-
-            <section id="day4">
-                <h2 class="section-date">02/18 初二</h2>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">09:15</span><h3 class="loc-title">從莫家莊退房</h3></div>
-                    <button onclick="goNav('莫家莊')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">10:00</span><h3 class="loc-title">飛牛牧場</h3><span class="stay-tag">停留 02:00</span></div>
-                    <button onclick="goNav('飛牛牧場')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">13:00</span><h3 class="loc-title">紅棗食府</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('紅棗食府')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">15:00</span><h3 class="loc-title">三義鴨箱寶</h3><span class="stay-tag">停留 01:00</span></div>
-                    <button onclick="goNav('三義鴨箱寶')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">16:15</span><h3 class="loc-title">馬家胡同</h3><span class="stay-tag">停留 00:30</span></div>
-                    <button onclick="goNav('馬家胡同')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">17:00</span><h3 class="loc-title">入住 卓也小屋</h3><span class="stay-tag">停留 01:00</span></div>
-                    <button onclick="goNav('卓也小屋渡假園區')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">18:30</span><h3 class="loc-title">新月梧桐三義店</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('新月梧桐三義店')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">20:20</span><h3 class="loc-title">卓也小屋 休息</h3></div>
-                    <button onclick="goNav('卓也小屋渡假園區')" class="btn-nav">導航</button>
-                </div></div>
-            </section>
-
-            <section id="day5">
-                <h2 class="section-date">02/19 初三</h2>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">10:30</span><h3 class="loc-title">小熊博物館</h3><span class="stay-tag">停留 01:00</span></div>
-                    <button onclick="goNav('小熊博物館苑裡手作體驗館')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">11:33</span><h3 class="loc-title">垂坤食品旗艦店</h3><span class="stay-tag">停留 00:27</span></div>
-                    <button onclick="goNav('垂坤食品旗艦店')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">12:13</span><h3 class="loc-title">佳樂觀光果園</h3><span class="stay-tag">停留 01:07</span></div>
-                    <button onclick="goNav('佳樂觀光果園')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">13:30</span><h3 class="loc-title">紅芭樂創意料理</h3><span class="stay-tag">停留 01:30</span></div>
-                    <button onclick="goNav('紅芭樂創意料理')" class="btn-nav">導航</button>
-                </div></div>
-                <div class="card" style="background: #DDE5B6;"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">15:00</span><h3 class="loc-title">快樂賦歸</h3></div>
-                </div></div>
-            </section>
-        </div>
+                </section>
+            </div>
 
         <div id="quick-nav" class="tab-content space-y-6">
             <h2 class="font-bold text-2xl text-[#5E6F64]">📍 臨時加點</h2>
@@ -251,14 +90,18 @@
         </div>
 
         <div id="tools" class="tab-content space-y-6">
-            <h2 class="font-bold text-2xl text-[#5E6F64]">💰 公款帳本</h2>
-            <div class="card">
-                <div id="expense-list"></div>
-                <button id="add-exp-btn" class="w-full mt-4 py-3 border-2 border-dashed border-[#A7AD9B] rounded-xl text-[#A7AD9B]">+ 新增支出</button>
-                <div class="mt-6 pt-6 border-t flex justify-between items-center font-black text-2xl text-[#8E9775]">
-                    <span>總計金額</span><span id="total-val">$ 0</span>
+            <div class="flex justify-between items-end">
+                <h2 class="font-bold text-2xl text-[#5E6F64]">💰 公款帳本</h2>
+                <div class="text-right">
+                    <span class="text-xs text-gray-400 block mb-1">總計金額</span>
+                    <span id="total-val" class="font-black text-3xl text-[#8E9775]">$ 0</span>
                 </div>
             </div>
+
+            <div id="expense-groups" class="space-y-8">
+                </div>
+
+            <button id="add-exp-btn" class="w-full py-4 bg-[#8E9775] text-white rounded-2xl font-bold shadow-lg">+ 新增支出項目</button>
         </div>
     </main>
 
@@ -283,6 +126,7 @@
         }
 
         function goNav(name) {
+            if(!name) return;
             window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`, '_blank');
         }
 
@@ -308,24 +152,67 @@
         function updateLoc(k,v) { db.ref('quick_nav').child(k).update({name: v}); }
         function delLoc(k) { if(confirm('刪除導航點？')) db.ref('quick_nav').child(k).remove(); }
 
-        // 帳本邏輯
+        // 💰 升級版帳本邏輯
+        const travelDates = ["02/15", "02/16", "02/17", "02/18", "02/19"];
+
         db.ref('expenses').on('value', snap => {
-            const list = document.getElementById('expense-list'); list.innerHTML = ''; let total = 0;
-            const data = snap.val();
-            if(data) {
-                Object.keys(data).forEach(k => {
-                    const i = data[k]; total += parseInt(i.amt || 0);
+            const groupContainer = document.getElementById('expense-groups');
+            groupContainer.innerHTML = '';
+            let totalOverall = 0;
+            const data = snap.val() || {};
+
+            // 依日期建立區塊
+            travelDates.forEach(date => {
+                const dateHeader = document.createElement('div');
+                dateHeader.innerHTML = `<h3 class="section-date" style="font-size: 1.2rem; margin-bottom: 10px;">${date}</h3>`;
+                const dateGroup = document.createElement('div');
+                dateGroup.id = `group-${date.replace('/','')}`;
+                dateHeader.appendChild(dateGroup);
+                groupContainer.appendChild(dateHeader);
+            });
+
+            Object.keys(data).forEach(k => {
+                const i = data[k];
+                const amt = parseInt(i.amt || 0);
+                totalOverall += amt;
+                
+                const targetId = `group-${(i.date || "02/15").replace('/','')}`;
+                const targetDiv = document.getElementById(targetId);
+                
+                if(targetDiv) {
                     const r = document.createElement('div');
-                    r.className = "flex gap-2 mb-3 items-center";
-                    r.innerHTML = `<input type="text" value="${i.name}" onchange="updateExp('${k}','name',this.value)" class="bg-gray-50 text-lg p-3 rounded-lg w-full outline-none font-bold"><input type="number" value="${i.amt}" onchange="updateExp('${k}','amt',this.value)" class="bg-gray-50 text-lg p-3 rounded-lg w-24 text-right outline-none font-bold text-[#8E9775]"><button onclick="delExp('${k}')" class="text-gray-300 px-2 text-xl">×</button>`;
-                    list.appendChild(r);
-                });
-            }
-            document.getElementById('total-val').innerText = '$ ' + total.toLocaleString();
+                    r.className = "card mb-4 p-4";
+                    r.innerHTML = `
+                        <div class="flex gap-2 mb-2">
+                            <select onchange="updateExp('${k}','date',this.value)" class="bg-gray-100 p-2 rounded-lg text-sm font-bold">
+                                ${travelDates.map(d => `<option value="${d}" ${i.date === d ? 'selected' : ''}>${d}</option>`).join('')}
+                            </select>
+                            <input type="text" value="${i.name || ''}" onchange="updateExp('${k}','name',this.value)" placeholder="項目名稱" class="bg-gray-50 p-2 rounded-lg w-full outline-none font-bold">
+                            <input type="number" value="${i.amt || 0}" onchange="updateExp('${k}','amt',this.value)" class="bg-gray-50 p-2 rounded-lg w-20 text-right outline-none font-bold text-[#8E9775]">
+                            <button onclick="delExp('${k}')" class="text-gray-300 px-1">×</button>
+                        </div>
+                        <input type="text" value="${i.note || ''}" onchange="updateExp('${k}','note',this.value)" placeholder="添加備註..." class="w-full text-xs text-gray-400 bg-transparent border-b border-gray-100 py-1 outline-none">
+                    `;
+                    targetDiv.appendChild(r);
+                }
+            });
+            document.getElementById('total-val').innerText = '$ ' + totalOverall.toLocaleString();
         });
-        document.getElementById('add-exp-btn').onclick = () => db.ref('expenses').push({ name: "", amt: 0 });
-        function updateExp(k,f,v) { const o={}; o[f]=v; db.ref('expenses').child(k).update(o); }
-        function delExp(k) { if(confirm('刪除項目？')) db.ref('expenses').child(k).remove(); }
+
+        document.getElementById('add-exp-btn').onclick = () => {
+            db.ref('expenses').push({ 
+                name: "", 
+                amt: 0, 
+                date: "02/15", // 預設日期
+                note: ""       // 預設備註
+            });
+        };
+
+        function updateExp(k,f,v) { 
+            const o={}; o[f]=v; 
+            db.ref('expenses').child(k).update(o); 
+        }
+        function delExp(k) { if(confirm('刪除此筆支出？')) db.ref('expenses').child(k).remove(); }
     </script>
 </body>
 </html>
