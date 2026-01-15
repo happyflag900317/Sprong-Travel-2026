@@ -4,71 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>2026 春節隨身手冊</title>
-    
-    <link rel="apple-touch-icon" href="icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="春節旅遊">
-    <link rel="icon" type="image/png" href="icon.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&display=swap');
-        
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Noto Serif TC', serif; 
-            background-color: #F2EFEA; 
-            color: #4A4A4A;
-        }
+        body { font-family: 'Noto Serif TC', serif; background-color: #F2EFEA; color: #4A4A4A; }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
-        
-        .card { 
-            background: white; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(142, 151, 117, 0.1); 
-            margin-bottom: 20px; 
-            padding: 24px; 
-        }
-        
-        .day-nav {
-            display: flex;
-            gap: 8px; overflow-x: auto; padding: 10px 5px; scrollbar-width: none;
-        }
-        .day-nav::-webkit-scrollbar { display: none; }
-        .day-btn {
-            flex: 0 0 auto; background-color: #A7AD9B; color: white; padding: 8px 16px; border-radius: 50px; font-size: 0.95rem; font-weight: 700;
-        }
-
-        #itinerary section { scroll-margin-top: 220px !important; }
-        .section-date { font-size: 1.6rem; font-weight: 900; color: #7D8E95; margin: 20px 0 15px 5px; }
-        .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: block; }
-        .loc-title { font-size: 1.35rem; font-weight: 700; color: #5E6F64; line-height: 1.5; }
-        .stay-tag { background: #E9EDC9; color: #6B705C; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; display: inline-block; }
-        
-        .btn-nav { 
-            background-color: #8E9775; color: white; border-radius: 12px; padding: 10px 18px; font-size: 1.1rem; font-weight: 700;
-            display: inline-flex; align-items: center; justify-content: center; border: none;
-        }
-        /* 記帳專用樣式 */
-        .exp-date-label { background: #7D8E95; color: white; padding: 2px 10px; border-radius: 6px; font-size: 0.9rem; margin-bottom: 10px; display: inline-block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: white; border-radius: 18px; box-shadow: 0 4px 15px rgba(142, 151, 117, 0.1); margin-bottom: 16px; padding: 20px; }
+        .day-nav { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; justify-content: center; }
+        .day-btn { flex: 0 0 auto; background-color: #A7AD9B; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+        .section-date { font-size: 1.4rem; font-weight: 900; color: #7D8E95; margin: 25px 0 15px; border-left: 4px solid #8E9775; padding-left: 12px; }
+        .time-tag { color: #A7AD9B; font-weight: 700; font-size: 1.1rem; }
+        .stay-tag { background: #E9EDC9; color: #6B705C; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; margin-top: 4px; display: inline-block; }
+        .btn-nav { background-color: #8E9775; color: white; border-radius: 10px; padding: 8px 16px; font-weight: 700; font-size: 0.9rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* 記帳頁固定頂部 */
+        .sticky-input { position: sticky; top: 120px; z-index: 30; background: #F2EFEA; padding-bottom: 10px; }
     </style>
 </head>
 <body class="pb-32">
 
-    <header class="bg-white/90 backdrop-blur-md p-6 pt-12 text-center sticky top-0 z-40 shadow-sm">
-        <h1 class="text-2xl font-black tracking-[0.2em] text-[#5E6F64] mb-4">二 〇 二 六 · 春 節 遊</h1>
+    <header class="bg-white/90 backdrop-blur-md p-4 pt-10 text-center sticky top-0 z-40 shadow-sm">
+        <h1 class="text-xl font-black tracking-[0.2em] text-[#5E6F64] mb-2">二 〇 二 六 · 春 節 遊</h1>
         <div class="day-nav">
-            <a href="#day1" class="day-btn">D1 小年夜</a>
-            <a href="#day2" class="day-btn">D2 除夕</a>
-            <a href="#day3" class="day-btn">D3 初一</a>
-            <a href="#day4" class="day-btn">D4 初二</a>
-            <a href="#day5" class="day-btn">D5 初三</a>
+            <div onclick="jumpToDay('day1')" class="day-btn">D1 小年夜</div>
+            <div onclick="jumpToDay('day2')" class="day-btn">D2 除夕</div>
+            <div onclick="jumpToDay('day3')" class="day-btn">D3 初一</div>
+            <div onclick="jumpToDay('day4')" class="day-btn">D4 初二</div>
+            <div onclick="jumpToDay('day5')" class="day-btn">D5 初三</div>
         </div>
     </header>
 
@@ -76,143 +42,187 @@
         <div id="itinerary" class="tab-content active">
             <section id="day1">
                 <h2 class="section-date">02/15 小年夜</h2>
-                <div class="card"><div class="flex justify-between items-start">
-                    <div><span class="time-tag">12:30</span><h3 class="loc-title">GOGOGA 極上雞湯</h3><span class="stay-tag">停留 01:30</span></div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">12:30</span><h3 class="font-bold text-lg">GOGOGA 極上雞湯</h3><span class="stay-tag">停留 01:30</span></div>
                     <button onclick="goNav('GOGOGA極上雞湯')" class="btn-nav">導航</button>
-                </div></div>
-                </section>
-            </div>
-
-        <div id="quick-nav" class="tab-content space-y-6">
-            <h2 class="font-bold text-2xl text-[#5E6F64]">📍 臨時加點</h2>
-            <div id="location-list"></div>
-            <button id="add-loc-btn" class="w-full py-4 bg-[#A7AD9B] text-white rounded-2xl font-bold">+ 新增導航點</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">14:15</span><h3 class="font-bold text-lg">好市多 台中店</h3><span class="stay-tag">停留 01:15</span></div>
+                    <button onclick="goNav('好市多 台中店')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">18:30</span><h3 class="font-bold text-lg">條柴直火料理</h3><span class="stay-tag">停留 01:30</span></div>
+                    <button onclick="goNav('條柴直火料理')" class="btn-nav">導航</button>
+                </div>
+            </section>
+            <section id="day2">
+                <h2 class="section-date">02/16 除夕</h2>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">10:00</span><h3 class="font-bold text-lg">后豐鐵馬道</h3><span class="stay-tag">停留 02:00</span></div>
+                    <button onclick="goNav('后豐鐵馬道')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">12:15</span><h3 class="font-bold text-lg">麗寶 OUTLET</h3><span class="stay-tag">停留 03:30</span></div>
+                    <button onclick="goNav('麗寶 OUTLET')" class="btn-nav">導航</button>
+                </div>
+            </section>
+            <section id="day3">
+                <h2 class="section-date">02/17 初一</h2>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">10:15</span><h3 class="font-bold text-lg">藤山步道</h3><span class="stay-tag">停留 01:15</span></div>
+                    <button onclick="goNav('藤山步道')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">14:00</span><h3 class="font-bold text-lg">好田森林</h3><span class="stay-tag">停留 01:30</span></div>
+                    <button onclick="goNav('好田森林')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">19:00</span><h3 class="font-bold text-lg">做茶菜 (大墩店)</h3><span class="stay-tag">停留 01:30</span></div>
+                    <button onclick="goNav('hechino做茶菜大墩店')" class="btn-nav">導航</button>
+                </div>
+            </section>
+            <section id="day4">
+                <h2 class="section-date">02/18 初二</h2>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">10:00</span><h3 class="font-bold text-lg">飛牛牧場</h3><span class="stay-tag">停留 02:00</span></div>
+                    <button onclick="goNav('飛牛牧場')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">15:00</span><h3 class="font-bold text-lg">三義鴨箱寶</h3><span class="stay-tag">停留 01:00</span></div>
+                    <button onclick="goNav('三義鴨箱寶')" class="btn-nav">導航</button>
+                </div>
+            </section>
+            <section id="day5">
+                <h2 class="section-date">02/19 初三</h2>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">10:30</span><h3 class="font-bold text-lg">小熊博物館</h3><span class="stay-tag">停留 01:00</span></div>
+                    <button onclick="goNav('小熊博物館')" class="btn-nav">導航</button>
+                </div>
+                <div class="card flex justify-between items-center">
+                    <div><span class="time-tag">12:13</span><h3 class="font-bold text-lg">佳樂觀光果園</h3><span class="stay-tag">停留 01:07</span></div>
+                    <button onclick="goNav('佳樂觀光果園')" class="btn-nav">導航</button>
+                </div>
+            </section>
         </div>
 
-        <div id="tools" class="tab-content space-y-6">
-            <div class="flex justify-between items-end">
+        <div id="tools" class="tab-content">
+            <div class="flex justify-between items-center mb-6">
                 <h2 class="font-bold text-2xl text-[#5E6F64]">💰 公款帳本</h2>
                 <div class="text-right">
-                    <span class="text-xs text-gray-400 block mb-1">總計金額</span>
-                    <span id="total-val" class="font-black text-3xl text-[#8E9775]">$ 0</span>
+                    <span class="text-xs text-gray-400">總計</span>
+                    <span id="total-val" class="font-black text-2xl text-[#8E9775] block">$ 0</span>
                 </div>
             </div>
 
-            <div id="expense-groups" class="space-y-8">
+            <div class="sticky-input">
+                <div class="card !bg-[#EAE7E0] border-2 border-[#8E9775]">
+                    <div class="flex gap-2 mb-2">
+                        <select id="new-exp-date" class="bg-white p-2 rounded-lg text-sm font-bold w-24">
+                            <option value="02/15">02/15</option>
+                            <option value="02/16">02/16</option>
+                            <option value="02/17">02/17</option>
+                            <option value="02/18">02/18</option>
+                            <option value="02/19">02/19</option>
+                        </select>
+                        <input type="text" id="new-exp-name" placeholder="項目名稱" class="bg-white p-2 rounded-lg flex-1 outline-none text-sm">
+                        <input type="number" id="new-exp-amt" placeholder="$" class="bg-white p-2 rounded-lg w-20 outline-none text-sm font-bold">
+                    </div>
+                    <input type="text" id="new-exp-note" placeholder="備註 (選填)" class="w-full bg-white/50 p-2 rounded-lg text-xs outline-none mb-3">
+                    <button onclick="addNewExpense()" class="w-full py-3 bg-[#8E9775] text-white rounded-xl font-bold text-sm">+ 新增支出項目</button>
                 </div>
+            </div>
 
-            <button id="add-exp-btn" class="w-full py-4 bg-[#8E9775] text-white rounded-2xl font-bold shadow-lg">+ 新增支出項目</button>
+            <div id="expense-list-container" class="mt-4">
+                </div>
+        </div>
+
+        <div id="quick-nav" class="tab-content">
+             <h2 class="font-bold text-2xl text-[#5E6F64] mb-4">📍 臨時導航</h2>
+             <div id="location-list"></div>
+             <button onclick="addQuickLoc()" class="w-full py-4 bg-[#A7AD9B] text-white rounded-2xl font-bold">+ 新增地點</button>
         </div>
     </main>
 
-    <nav class="fixed bottom-0 w-full bg-white/95 backdrop-blur-md border-t flex justify-around p-4 pb-10 shadow-lg z-50">
-        <button onclick="showTab('itinerary')" class="nav-btn-tab flex flex-col items-center text-[#8E9775]"><i class="fas fa-calendar-alt text-2xl"></i><span class="text-xs mt-1">預定行程</span></button>
-        <button onclick="showTab('quick-nav')" class="nav-btn-tab flex flex-col items-center text-gray-400"><i class="fas fa-map-marked-alt text-2xl"></i><span class="text-xs mt-1">臨時導航</span></button>
-        <button onclick="showTab('tools')" class="nav-btn-tab flex flex-col items-center text-gray-400"><i class="fas fa-wallet text-2xl"></i><span class="text-xs mt-1">公款記帳</span></button>
+    <nav class="fixed bottom-0 w-full bg-white/95 backdrop-blur-md border-t flex justify-around p-4 pb-8 shadow-lg z-50">
+        <button onclick="showTab('itinerary')" class="nav-btn flex flex-col items-center text-[#8E9775]"><i class="fas fa-calendar-alt text-xl"></i><span class="text-[10px] mt-1">預定行程</span></button>
+        <button onclick="showTab('quick-nav')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-map-marked-alt text-xl"></i><span class="text-[10px] mt-1">臨時導航</span></button>
+        <button onclick="showTab('tools')" class="nav-btn flex flex-col items-center text-gray-400"><i class="fas fa-wallet text-xl"></i><span class="text-[10px] mt-1">公款記帳</span></button>
     </nav>
 
     <script>
-        function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            const btns = document.querySelectorAll('.nav-btn-tab');
-            btns.forEach(btn => {
-                btn.classList.remove('text-[#8E9775]');
-                btn.classList.add('text-gray-400');
-            });
-            event.currentTarget.classList.remove('text-gray-400');
-            event.currentTarget.classList.add('text-[#8E9775]');
-            window.scrollTo(0,0);
-        }
-
-        function goNav(name) {
-            if(!name) return;
-            window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`, '_blank');
-        }
-
         const config = { databaseURL: "https://springtravel-2026-default-rtdb.asia-southeast1.firebasedatabase.app" };
         firebase.initializeApp(config);
         const db = firebase.database();
 
-        // 臨時導航邏輯
-        db.ref('quick_nav').on('value', snap => {
-            const list = document.getElementById('location-list'); list.innerHTML = '';
-            const data = snap.val();
-            if(data) {
-                Object.keys(data).forEach(k => {
-                    const i = data[k];
-                    const r = document.createElement('div');
-                    r.className = "card flex gap-2 items-center";
-                    r.innerHTML = `<input type="text" value="${i.name}" onchange="updateLoc('${k}',this.value)" placeholder="輸入地點名稱" class="bg-gray-50 text-lg p-3 rounded-lg w-full outline-none font-bold"><button onclick="goNav('${i.name}')" class="btn-nav"><i class="fas fa-location-arrow"></i></button><button onclick="delLoc('${k}')" class="text-gray-300 px-2 text-xl">×</button>`;
-                    list.appendChild(r);
-                });
-            }
-        });
-        document.getElementById('add-loc-btn').onclick = () => db.ref('quick_nav').push({ name: "" });
-        function updateLoc(k,v) { db.ref('quick_nav').child(k).update({name: v}); }
-        function delLoc(k) { if(confirm('刪除導航點？')) db.ref('quick_nav').child(k).remove(); }
+        // 跳轉功能：切換到行程頁並捲動
+        function jumpToDay(dayId) {
+            showTab('itinerary');
+            setTimeout(() => {
+                const el = document.getElementById(dayId);
+                if(el) {
+                    const offset = 160;
+                    window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+                }
+            }, 100);
+        }
 
-        // 💰 升級版帳本邏輯
-        const travelDates = ["02/15", "02/16", "02/17", "02/18", "02/19"];
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.replace('text-[#8E9775]', 'text-gray-400'));
+            event.currentTarget.classList.replace('text-gray-400', 'text-[#8E9775]');
+        }
+
+        function goNav(name) { window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`, '_blank'); }
+
+        // 記帳邏輯
+        const dates = ["02/15", "02/16", "02/17", "02/18", "02/19"];
+        
+        function addNewExpense() {
+            const date = document.getElementById('new-exp-date').value;
+            const name = document.getElementById('new-exp-name').value;
+            const amt = document.getElementById('new-exp-amt').value;
+            const note = document.getElementById('new-exp-note').value;
+            if(!name || !amt) return alert("請輸入項目與金額");
+            
+            db.ref('expenses').push({ date, name, amt: parseInt(amt), note });
+            document.getElementById('new-exp-name').value = '';
+            document.getElementById('new-exp-amt').value = '';
+            document.getElementById('new-exp-note').value = '';
+        }
 
         db.ref('expenses').on('value', snap => {
-            const groupContainer = document.getElementById('expense-groups');
-            groupContainer.innerHTML = '';
-            let totalOverall = 0;
+            const container = document.getElementById('expense-list-container');
+            container.innerHTML = '';
             const data = snap.val() || {};
+            let total = 0;
 
-            // 依日期建立區塊
-            travelDates.forEach(date => {
-                const dateHeader = document.createElement('div');
-                dateHeader.innerHTML = `<h3 class="section-date" style="font-size: 1.2rem; margin-bottom: 10px;">${date}</h3>`;
-                const dateGroup = document.createElement('div');
-                dateGroup.id = `group-${date.replace('/','')}`;
-                dateHeader.appendChild(dateGroup);
-                groupContainer.appendChild(dateHeader);
-            });
-
-            Object.keys(data).forEach(k => {
-                const i = data[k];
-                const amt = parseInt(i.amt || 0);
-                totalOverall += amt;
-                
-                const targetId = `group-${(i.date || "02/15").replace('/','')}`;
-                const targetDiv = document.getElementById(targetId);
-                
-                if(targetDiv) {
-                    const r = document.createElement('div');
-                    r.className = "card mb-4 p-4";
-                    r.innerHTML = `
-                        <div class="flex gap-2 mb-2">
-                            <select onchange="updateExp('${k}','date',this.value)" class="bg-gray-100 p-2 rounded-lg text-sm font-bold">
-                                ${travelDates.map(d => `<option value="${d}" ${i.date === d ? 'selected' : ''}>${d}</option>`).join('')}
-                            </select>
-                            <input type="text" value="${i.name || ''}" onchange="updateExp('${k}','name',this.value)" placeholder="項目名稱" class="bg-gray-50 p-2 rounded-lg w-full outline-none font-bold">
-                            <input type="number" value="${i.amt || 0}" onchange="updateExp('${k}','amt',this.value)" class="bg-gray-50 p-2 rounded-lg w-20 text-right outline-none font-bold text-[#8E9775]">
-                            <button onclick="delExp('${k}')" class="text-gray-300 px-1">×</button>
-                        </div>
-                        <input type="text" value="${i.note || ''}" onchange="updateExp('${k}','note',this.value)" placeholder="添加備註..." class="w-full text-xs text-gray-400 bg-transparent border-b border-gray-100 py-1 outline-none">
-                    `;
-                    targetDiv.appendChild(r);
+            dates.forEach(d => {
+                const dayItems = Object.entries(data).filter(([k, v]) => v.date === d);
+                if(dayItems.length > 0) {
+                    const sec = document.createElement('div');
+                    sec.innerHTML = `<h3 class="font-bold text-[#7D8E95] mt-4 mb-2">${d} 支出</h3>`;
+                    dayItems.forEach(([k, v]) => {
+                        total += v.amt;
+                        sec.innerHTML += `
+                            <div class="bg-white p-3 rounded-xl mb-2 shadow-sm border-l-4 border-[#A7AD9B] flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold text-sm">${v.name}</div>
+                                    <div class="text-[10px] text-gray-400">${v.note || ''}</div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-[#8E9775]">$${v.amt}</span>
+                                    <button onclick="deleteExp('${k}')" class="text-gray-300 text-xs">✕</button>
+                                </div>
+                            </div>`;
+                    });
+                    container.appendChild(sec);
                 }
             });
-            document.getElementById('total-val').innerText = '$ ' + totalOverall.toLocaleString();
+            document.getElementById('total-val').innerText = `$ ${total.toLocaleString()}`;
         });
 
-        document.getElementById('add-exp-btn').onclick = () => {
-            db.ref('expenses').push({ 
-                name: "", 
-                amt: 0, 
-                date: "02/15", // 預設日期
-                note: ""       // 預設備註
-            });
-        };
-
-        function updateExp(k,f,v) { 
-            const o={}; o[f]=v; 
-            db.ref('expenses').child(k).update(o); 
-        }
-        function delExp(k) { if(confirm('刪除此筆支出？')) db.ref('expenses').child(k).remove(); }
+        function deleteExp(k) { if(confirm('確定刪除？')) db.ref('expenses').child(k).remove(); }
     </script>
 </body>
 </html>
